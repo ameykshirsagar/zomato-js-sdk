@@ -6,7 +6,6 @@ This is a Zomato's jQuery SDK to connect with the Zomato's API.
   - Initialize the Zomato's SDK with the key you got when you  signed up.
   - Execute the respective api function respective to the api handler specified in the Zomato's API.
 
-Markdown is a lightweight markup language based on the formatting conventions that people naturally use in email.  As [John Gruber] writes on the [Markdown site][df1]
 
 ### Version
 1.0.0
