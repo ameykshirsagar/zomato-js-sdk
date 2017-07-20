@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Zomato Test</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="zomato.js" type="application/javascript">
+    </script>
+</head>
+
+<body onload="onload()">
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <h5>Geocode (/geocode)</h5>
+    <p id="geocode_op"></p>
+</body>
+<script type="application/javascript">
+    function onload(param) {
+        Zomato.init({
+            key: "9716553c84c5bf8e0fe8721ce09956b4"
+        });
+        Zomato.geocode({
+            latitude: 18.5547793,
+            longitude: 73.8124983
+        }, function(s) {
+            document.getElementById("geocode_op").innerHTML = JSON.stringify(s);
+            console.log(s)
+        });
+    }
+</script>
+
+</html>

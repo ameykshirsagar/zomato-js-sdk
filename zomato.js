@@ -62,7 +62,22 @@ var Zomato = {
             // code for IE6, IE5
             req = new ActiveXObject("Microsoft.XMLHTTP");
         }
+        req.responseType = 'json';
+        if (opts.type === undefined || opts.type === "GET") {
+            var q = "?";
+            for (var j = 0; j < Object.keys(opts.data).length; j++) {
+                var element = Object.keys(opts.data)[j];
+                q += element + "=" + opts.data[Object.keys(opts.data)[j]];
+                if (j !== Object.keys(opts.data).length - 1) {
+                    q += "&";
+                }
+            }
+            opts.url = opts.url + q;
+        }
 
+        //setting data
+
+        req.open(opts.type === undefined ? "GET" : opts.type, opts.url, true);
         //setting headers
         req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         if (opts.headers !== undefined || typeof opts.headers === "object") {
@@ -70,15 +85,17 @@ var Zomato = {
                 req.setRequestHeader(Object.keys(opts.headers)[index], opts.headers[Object.keys(opts.headers)[index]]);
             }
         }
-        req.open(opts.type === undefined ? "GET" : opts.type, url, true);
-        //setting data
         req.onreadystatechange = function() {
+            console.log(req.readyState)
             if (req.readyState === 4 && req.status === 200) {
-                opts.success(req);
-            } else {
+                opts.success(req.response);
+            } else if (req.status === "400" || req.status === "401" || req.status === "403" || req.status === "404") {
                 opts.error(req);
+            } else {
+
             }
         };
-        req.send(opts.data === undefined ? null : opts.data);
+
+        req.send(opts.type === "GET" ? null : opts.data);
     }
 };
