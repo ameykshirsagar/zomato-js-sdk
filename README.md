@@ -19,7 +19,7 @@ This library depends on jQuery library.
 Load the zomato.js:
 
 ```javascript
-$ Zomato.init("<YOUR-ZOMATO-API-KEY>");
+Zomato.init("<YOUR-ZOMATO-API-KEY>");
 ```
 For example
 
